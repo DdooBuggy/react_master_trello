@@ -83,9 +83,17 @@ function Board({ toDos, boardId }: IBoardProps) {
     });
     setValue("toDo", "");
   };
+  const onDelete = () => {
+    setToDos((allBoards) => {
+      const currentBoards = { ...allBoards };
+      delete currentBoards[boardId];
+      return currentBoards;
+    });
+  };
   return (
     <Wrapper>
       <Title>{boardId}</Title>
+      <button onClick={onDelete}>Delete Board</button>
       <Form onSubmit={handleSubmit(onValid)}>
         <input
           {...register("toDo", { required: true })}
