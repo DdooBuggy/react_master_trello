@@ -4,23 +4,34 @@ import DraggableCard from "./DraggableCard";
 import { useForm } from "react-hook-form";
 import { IToDo, toDoState } from "../atoms";
 import { useSetRecoilState } from "recoil";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 
 const Wrapper = styled.div`
   background-color: ${(props) => props.theme.boardColor};
-  width: 300px;
   padding: 20px 10px;
   border-radius: 5px;
-  min-height: 300px;
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  min-height: 400px;
+  width: 300px;
+  position: relative;
 `;
 
 const Title = styled.h2`
   font-size: 20px;
   font-weight: 600;
   text-align: center;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
+`;
+
+const DeleteBtn = styled.div`
+  position: absolute;
+  margin-left: 15px;
+  font-size: 20px;
+  cursor: pointer;
+  color: ${(props) => props.theme.deleteColor};
 `;
 
 interface IAreaProps {
@@ -47,14 +58,13 @@ const Form = styled.form`
   justify-content: center;
   padding-bottom: 10px;
   input {
-    width: 80%;
-    font-size: 16px;
+    width: 100%;
+    height: 20px;
+    font-size: 13px;
     border: 0;
-    background-color: white;
-    padding: 10px;
+    background-color: ${(props) => props.theme.cardColor};
     border-radius: 5px;
     text-align: center;
-    margin: 0 auto;
   }
 `;
 
@@ -93,7 +103,9 @@ function Board({ toDos, boardId }: IBoardProps) {
   return (
     <Wrapper>
       <Title>{boardId}</Title>
-      <button onClick={onDelete}>Delete Board</button>
+      <DeleteBtn onClick={onDelete}>
+        <FontAwesomeIcon icon={solid("rectangle-xmark")} />
+      </DeleteBtn>
       <Form onSubmit={handleSubmit(onValid)}>
         <input
           {...register("toDo", { required: true })}

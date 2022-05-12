@@ -9,19 +9,42 @@ import Trash from "./Components/Trash";
 
 const Wrapper = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 100vw;
   margin: 0 auto;
-  height: 90vh;
+  margin-top: 50px;
+  padding: 50px 10px;
+`;
+
+const TopBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  padding: 0 30px;
+  form {
+    width: 60%;
+    input {
+      width: 100%;
+      height: 40px;
+      font-size: 20px;
+      border: 0;
+      background-color: ${(props) => props.theme.cardColor};
+      border-radius: 5px;
+      text-align: center;
+    }
+  }
 `;
 
 const Boards = styled.div`
   display: flex;
   justify-content: center;
-  align-items: center;
-  width: 100%;
+  width: 80%;
   gap: 10px;
+  flex-wrap: wrap;
 `;
 
 interface IToDoBoard {
@@ -86,22 +109,23 @@ function App() {
   }, [toDos]);
   return (
     <div>
-      <form onSubmit={handleSubmit(onAddBoard)}>
-        <input
-          {...register("toDoBoard", { required: true })}
-          placeholder="Add board"
-        />
-        <button>Add Board</button>
-      </form>
       <DragDropContext onDragEnd={onDragEnd}>
         <Wrapper>
+          <TopBox>
+            <form onSubmit={handleSubmit(onAddBoard)}>
+              <input
+                {...register("toDoBoard", { required: true })}
+                placeholder="Add board"
+              />
+            </form>
+            <Trash />
+          </TopBox>
           <Boards>
             {Object.keys(toDos).map((boardId) => (
               <Board key={boardId} boardId={boardId} toDos={toDos[boardId]} />
             ))}
           </Boards>
         </Wrapper>
-        <Trash />
       </DragDropContext>
     </div>
   );
