@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/reat_master_trello/static/js/main.0e4dd454.js",
-    "index.html": "/reat_master_trello/index.html",
-    "main.0e4dd454.js.map": "/reat_master_trello/static/js/main.0e4dd454.js.map"
+    "main.js": "/react_master_trello/static/js/main.b6c09a5d.js",
+    "index.html": "/react_master_trello/index.html",
+    "main.b6c09a5d.js.map": "/react_master_trello/static/js/main.b6c09a5d.js.map"
   },
   "entrypoints": [
-    "static/js/main.0e4dd454.js"
+    "static/js/main.b6c09a5d.js"
   ]
 }
